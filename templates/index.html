@@ -16,7 +16,7 @@
 <body>
 
 
-  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
   <script>
     // Initialize Firebase
     var config = {
@@ -28,50 +28,8 @@
       messagingSenderId: "1078041465532"
     };
     firebase.initializeApp(config);
-  </script>
-
-<!-- Navbar starts-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-  <a class="navbar-brand" href="/">NIEzapp</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li> -->
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          My Account
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Settings</a>
-          <a class="dropdown-item" href="#">Change Password</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Sign Out</a>
-        </div>
-      </li>
-
-      <!-- <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li> -->
-
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Groups <span class="sr-only">(current)</span></a>
-      </li>
-
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-<!-- Navbar Ends -->
+  </script> -->
+{% include 'nav.html' %}
 </br></br></br>
 
 
@@ -80,14 +38,14 @@
 
   <a class="list-group-item list-group-item-action flex-column align-items-start">
     <p class="mb-1">
-      <form>
+      <form method="POST" action="/">
         <div class="form-group">
           <label for="formGroupExampleInput">Write Something to Post</label>
-          <input type="text" class="form-control" id="postInput">
+          <input type="text" class="form-control" name="postInput">
         </div>
         <input type="submit" class="btn btn-primary mb-2" value="Image">
         <input type="submit" class="btn btn-primary mb-2" value="Video">
-        <input type="submit" class="btn btn-primary mb-2" value="OK" onclick="getData();">
+        <input type="submit" class="btn btn-primary mb-2" value="OK">
       </form>
     </p>
   </a>
@@ -97,7 +55,7 @@
       <h5 class="mb-1">Post Heading</h5>
       <small class="text-muted">3 days ago</small>
     </div>
-    <p class="mb-1">A social media platform has been launched exclusively for The National Institute of Engineering</p>
+    <p class="mb-1">{{ d }}</p>
     <small class="text-muted">By Akshari,Abhinav,Abhinav Kumar</small>
   </a>
   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -120,14 +78,14 @@
 </div>
 
 
-<script>
+<!-- <script>
   function getData(){
     var content = document.getElementByID("postInput");
     alert(content.value);
     firebase.database().ref().child("posts").set(content.value);
   }
 
-</script>
+</script> -->
 
 </body>
 </html>
