@@ -13,5 +13,13 @@ def main():
 	ret = firebase.get('/posts',None)
 	return render_template('index.html',d=ret)
 
+@app.route("/login")
+def login():
+	return render_template('login.html')
+
+@app.route("/signup")
+def signup():
+	return render_template('signup.html')
+
 if __name__ == "__main__":
 	app.run(debug = True, threaded = True)
