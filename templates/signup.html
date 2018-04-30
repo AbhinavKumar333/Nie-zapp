@@ -1,56 +1,75 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 </head>
 <body>
 {% include 'nav.html' %}
+<script>
+function validateForm(formId)
+    {
+        var inputs, index;
+        var form=document.getElementById(formId);
+        inputs = form.getElementsByTagName('input');
+        for (index = 0; index < inputs.length; ++index) {
+            // deal with inputs[index] element.
+            if (inputs[index].value==null || inputs[index].value=="")
+            {
+                alert("Field is empty");
+                return false;
+            }
+        }
+    }
+</script>
 </br></br></br>
-<form>
+<form name="register" id="register" method="post" onsubmit="return validateForm('register');">
 <div class="container">
   <div class="form-row">
     <div class="form-group col-md-6">
+      <label for="inputEmail4">Username</label>
+      <input type="text" name="name" class="form-control" id="name" placeholder="Usernames">
+    </div>
+    <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+      <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Password</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+      <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddress">BRANCH</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div>
-  <div class="form-group">
-    <label for="inputAddress2">Address</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Home,PG,FLat">
+    <input type="text" name="branch" class="form-control" id="inputAddress" placeholder="Branch">
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">USN</label>
-      <input type="number" class="form-control" id="inputUSN">
+      <input type="text" name="usn" class="form-control" id="inputUSN" placeholder="USN">
     </div>
-    <div class="form-group col-md-4">
+    <!-- <div class="form-group col-md-4">
       <label for="inputState">Year of joining</label>
-      <select id="inputState" class="form-control">
+      <select id="inputState" name="yoj" class="form-control">
         <option selected>Choose...</option>
         <option>...</option>
       </select>
-    </div>
+    </div> -->
     <div class="form-group col-md-2">
       <label for="inputZip">Semester</label>
-      <input type="text" class="form-control" id="inputSem or Enter '0'if passed">
+      <input type="text" name="sem" class="form-control" id="inputSem" placeholder="Semester">
     </div>
   </div>
-  <div class="form-group">
-    <div class="form-check">
+  <!-- <div class="form-group"> -->
+    <!-- <div class="form-check">
       <input class="form-check-input" type="checkbox" id="gridCheck">
       <label class="form-check-label" for="gridCheck">
         Remember Me
       </label>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
+    </div> -->
+  <!-- </div> -->
+  <button type="submit" class="btn btn-primary">Register</button>
 </div>
 </form>
+
 </body>

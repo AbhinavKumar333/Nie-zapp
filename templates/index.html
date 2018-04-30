@@ -11,69 +11,74 @@
 	<meta name="author" content="Abhinav Kumar">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<link rel="icon" href="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/128/app_type_university_512px_GREY.png">
 </head>
 
 <body>
 
-
- 
 {% include 'nav.html' %}
-</br></br></br>
+<script>
+function validateForm(formId)
+    {
+        var inputs, index;
+        var form=document.getElementById(formId);
+        inputs = form.getElementsByTagName('textarea');
+        for (index = 0; index < inputs.length; ++index) {
+            // deal with inputs[index] element.
+            if (inputs[index].value==null || inputs[index].value=="")
+            {
+                alert("Field is empty");
+                return false;
+            }
+        }
+    }
+</script>
+</br></br>
 
-
+<div class="container">
+	<div class="row justify-content-md-center"><div class="col-md-9">
 <div class="container-fluid bg">
 <div class="list-group">
-
+{% if session['usn'] is defined %}
+<div class="alert alert-primary" role="alert">
   <a class="list-group-item list-group-item-action flex-column align-items-start">
     <p class="mb-1">
-      <form method="POST" action="/">
+
+			<form name="register" id="register" method="POST" onsubmit="return validateForm('register');">
         <div class="form-group">
-          <label for="formGroupExampleInput">Write Something to Post</label>
-          <input type="text" class="form-control" name="postInput">
+          <textarea class="form-control" name="postInput" placeholder="Write Something to Post"></textarea>
         </div>
-        <input type="submit" class="btn btn-primary mb-2" value="Image">
-        <input type="submit" class="btn btn-primary mb-2" value="Video">
-        <input type="submit" class="btn btn-primary mb-2" value="OK">
+        <input type="submit" class="btn btn-primary mb-2" value="Post">
       </form>
+
     </p>
   </a>
-</br></br>
+	</div>
+	{% endif %}
+</br>
+<div class="alert alert-secondary" role="alert">
+  <h4>Latest News and Alerts About the College</h4>
+</div>
+</br>
+
+{% for posts in all_posts|reverse %}
+{% for post in all_posts[posts]|reverse %}
   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Post Heading</h5>
-      <small class="text-muted">3 days ago</small>
+      <h5 class="mb-1" style="padding : 10px;">{{ all_posts[posts][post] }}</h5>
+      <!-- <small class="text-muted">3 days ago</small> -->
     </div>
-    <p class="mb-1">{{ d }}</p>
-    <small class="text-muted">By Akshari,Abhinav,Abhinav Kumar</small>
+    <p class="mb-1"></p>
+    <small class="text-muted">Posted by {{ posts }}</small>
   </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Post Heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">A social media platform has been launched exclusively for The National Institute of Engineering</p>
-    <small class="text-muted">By Akshari,Abhinav,Abhinav Kumar</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Post Heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">A social media platform has been launched exclusively for The National Institute of Engineering</p>
-    <small class="text-muted">By Akshari,Abhinav,Abhinav Kumar</small>
-  </a>
+</br>
+	{% endfor %}
+{% endfor %}
 </div>
 </div>
-
-
-<!-- <script>
-  function getData(){
-    var content = document.getElementByID("postInput");
-    alert(content.value);
-    firebase.database().ref().child("posts").set(content.value);
-  }
-
-</script> -->
+</div>
+</div>
+</div>
 
 </body>
 </html>
